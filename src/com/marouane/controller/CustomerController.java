@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.marouane.dao.CustomerDAO;
 import com.marouane.entity.Customer;
+import com.marouane.service.CustomerService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
 	@Autowired
-	CustomerDAO dao;
+	CustomerService service;
 	
 	@GetMapping("/list")
 	public String listCustomers(Model model) {
-		List<Customer> customers = dao.getCustomers();
+		List<Customer> customers = service.getCustomers();
 		model.addAttribute("customers", customers);
 		return "list";
 	}
