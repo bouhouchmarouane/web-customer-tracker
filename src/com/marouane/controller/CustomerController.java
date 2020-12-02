@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.marouane.entity.Customer;
 import com.marouane.service.CustomerService;
@@ -40,5 +41,13 @@ public class CustomerController {
 		service.saveCustomer(customer);
 		
 		return "redirect:/customer/list";
+	}
+	
+	@GetMapping("/update")
+	public String updateCustomerForm(@RequestParam("customerId") int id, Model model) {
+		Customer customer = service.getCustomer(id);
+		model.addAttribute("customer", customer);
+		
+		return "form";
 	}
 }
