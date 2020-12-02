@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.marouane.dao.CustomerDAO;
 import com.marouane.entity.Customer;
 import com.marouane.service.CustomerService;
 
@@ -24,5 +23,10 @@ public class CustomerController {
 		List<Customer> customers = service.getCustomers();
 		model.addAttribute("customers", customers);
 		return "list";
+	}
+	
+	@GetMapping("/form")
+	public String addCustomer(Model model) {
+		return "form";
 	}
 }
