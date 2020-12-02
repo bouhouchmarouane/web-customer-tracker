@@ -17,6 +17,7 @@
 	
 	<div id="container">
 		<div id="content">
+			<input type="button" value="Add customer" onclick="window.location.href='form';" class="add-button">
 			<table>
 				<thead>
 					<tr>
