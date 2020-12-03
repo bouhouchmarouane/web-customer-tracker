@@ -5,7 +5,7 @@ import java.util.List;
 import com.marouane.entity.Customer;
 
 public interface CustomerService {
-	public List<Customer> getCustomers();
+	public List<Customer> getCustomers(String searchValue);
 
 	public void saveCustomer(Customer customer);
 

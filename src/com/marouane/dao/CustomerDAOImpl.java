@@ -18,9 +18,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Customer> getCustomers() {
+	public List<Customer> getCustomers(String searchValue) {
 		Session session = sessionFactory.getCurrentSession();
-		Query<Customer> query = session.createQuery("from Customer order by first_name", Customer.class);
+		Query<Customer> query = session.createQuery("from Customer c "
+				+ "where c.firstName like :searchValue "
+				+ "or c.lastName like :searchValue "
+				+ "or c.email like :searchValue "
+				+ "order by first_name", Customer.class);
+		query.setParameter("searchValue", "%" + searchValue + "%");
 		return query.getResultList();
 	}
 

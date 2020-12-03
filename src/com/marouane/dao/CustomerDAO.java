@@ -6,7 +6,7 @@ import com.marouane.entity.Customer;
 
 public interface CustomerDAO {
 
-	public List<Customer> getCustomers();
+	public List<Customer> getCustomers(String searchValue);
 
 	public void saveCustomer(Customer customer);
 
