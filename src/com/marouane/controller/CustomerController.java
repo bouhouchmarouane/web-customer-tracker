@@ -22,8 +22,9 @@ public class CustomerController {
 	CustomerService service;
 	
 	@GetMapping("/list")
-	public String listCustomers(Model model) {
-		List<Customer> customers = service.getCustomers();
+	public String listCustomers(Model model, @RequestParam(required = false, name = "searchInput") String searchValue) {
+		searchValue = searchValue == null ? "" : searchValue;
+		List<Customer> customers = service.getCustomers(searchValue);
 		model.addAttribute("customers", customers);
 		return "list";
 	}
@@ -49,5 +50,12 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		
 		return "form";
+	}
+	
+	@GetMapping("/delete")
+	public String deleteCustomer(@RequestParam("customerId") int id) {
+		service.deleteCustomer(id);
+		
+		return "redirect:/customer/list";
 	}
 }
